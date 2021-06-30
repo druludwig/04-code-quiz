@@ -13,6 +13,7 @@ let initialsField = document.querySelector("#initials");
 let leaderList = document.querySelector("#leader-list")
 let leaderBoard = document.querySelector("#leaderboard")
 let leaderboardButton = document.querySelector("#view-leaderboard")
+let clearButton = document.querySelector("#clear-button")
 
 let currentIndex = 0;
 let time = 0;
@@ -188,5 +189,10 @@ function displayHighscores(){
     leaderboardButton.style.display = "none"
 }
 
+function clearLeaderboard(){
+   localStorage.clear();
+   leaderList.style.display = "none"
+   clearButton.style.display = "none"
+}
 
 leaderboardButton.addEventListener("click", (displayHighscores));
