@@ -19,8 +19,8 @@ body{
     display: flex;
     flex-direction: column;
     align-content: center;
-    height: 40vh;
-    width: 60vh;
+    height: 55vh;
+    width: 80vh;
     background-color: var(--accent-color-2);
     text-align: center;
     box-shadow: 10px 10px 5px #a8a8a8;
@@ -46,9 +46,8 @@ body{
 /* Leaderboard */
 .leaderboard{
     display: flex;
-
-    height: 40vh;
-    width: 60vh;
+    height: 55vh;
+    width: 80vh;
     background-color: var(--accent-color-2);
     text-align: center;
     box-shadow: 10px 10px 5px #a8a8a8;
