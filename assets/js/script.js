@@ -1,6 +1,8 @@
 let quizMain = document.querySelector("#quiz-main")
 let startButton = document.querySelector("#start-button");
+let saveButton = document.querySelector("#save-button");
 let timerElement = document.querySelector("#timer-display");
+let scoreElement = document.querySelector("#score-display");
 let sectionHead = document.querySelector("#section-head");
 let sectionText = document.querySelector("#section-text");
 let answerDisplay = document.querySelector("#answer-display");
@@ -10,10 +12,10 @@ let answerLine3 = document.querySelector("#answerLine3");
 let answerLine4 = document.querySelector("#answerLine4");
 
 let currentIndex = 0;
-let score = 0;
 let time = 0;
 let timer;
 let isDone = false;
+let score = 0;
 
 let questionsArray=[
     {
@@ -58,45 +60,40 @@ let questionsArray=[
    }
 ]
 
-//01 Start the Game
+//Start the Game
 startButton.addEventListener("click", startQuiz);
 
 function startQuiz(){
-   sectionText.style.display = 'none';
+   currentIndex = 0
+   sectionText.textContent = '';
    startButton.style.display = 'none';
+   saveButton.style.display = 'none';
+   answerDisplay.style.display = 'block';
    gameTimer();
    renderQuestions();
-//hide start button
 }
 
-//02 Start the Timer
+//Start the Timer
 function gameTimer() {
-      time = 60
-   // Sets timer
+      time = 51
       timer = setInterval(function() {
         time--;
         timerElement.textContent = ("Time: " + time);
           if (time >= 0) {
-          // Tests if win condition is met
           if (isDone && time > 0) {
-            // Clears interval and stops timer
             clearInterval(timer);
-            endQuiz();
-          }
+            endQuiz();}
         }
-        // Tests if time has run out
         if (time <= 0) {
-          // Clears interval
           clearInterval(timer);
           timerOut();
         }
       }, 1000);
 }
 
-//03 Generate and display the questions and answers
+//Generate and display the questions and answers
 function renderQuestions(){  
 for (let i = 0; i < questionsArray.length; i++) {
-
    //Question
    let currentQuestion = questionsArray[currentIndex].question;
    sectionHead.textContent = currentQuestion;
@@ -105,27 +102,23 @@ for (let i = 0; i < questionsArray.length; i++) {
    answerLine2.textContent = questionsArray[currentIndex].answer2
    answerLine3.textContent = questionsArray[currentIndex].answer3
    answerLine4.textContent = questionsArray[currentIndex].answer4
-
+   //Wait for the user to choose
    answerDisplay.addEventListener("click", (checkAnswers));
-   
 }
 } 
 
 //Check for correct answer
 function checkAnswers(event){
    var element = event.target;
-  
    if (element.matches("li")) {
       if (element.textContent == questionsArray[currentIndex].correctAnswer){
       score++;
-      console.log('you are right!');}
+      sectionText.textContent = ("CORRECT! You've got " + score + " correct answers so far!")}
      else {
       time -= 10;
-      console.log('you are wrong!');}
-      }
+      sectionText.textContent = ("Not quite. But, maybe this next one won't be too much for you.")}
+   }
    currentIndex++;
-   console.log('Progress is: ' + currentIndex)
-   console.log('Score is: ' + score)
    checkProgress()
    }
 
@@ -142,19 +135,27 @@ function checkProgress(){
  
 //This ends the quiz if they complete it in time
 function endQuiz(){
-sectionHead.textContent = "All Done!"
-sectionText.textContent = `You answered ${score} out of 5 correctly`
-
+isDone = true;
+sectionText.style.display = '';
+sectionHead.textContent = 'All Done!';
+sectionText.textContent = `You answered ${score} out of 5 correctly and had ${time} seconds left on the clock`;
+saveButton.style.display = 'block';
+saveButton.addEventListener("click", (postScores));
 }
-
-
-
 
 //This ends the quiz if the timer runs out
 function timerOut(){
-sectionHead.textContent = "You lose."
+sectionHead.textContent = "Oh no!"
+sectionText.textContent = `The timer ran out! You got through ${currentIndex} questions and got ${score} of them correct before time ran out.`;
+startButton.style.display = 'block';
+startButton.innerHTML = "Start Over"
 }
 
+function postScores(){
+sectionHead.textContent = "Save your Score";
+sectionText.textContent = "Enter your First name";
+answerDisplay.style.display = 'none';
+saveButton.style.display = 'none';
 
 
-//isDone -- if the quiz is done then set isdone to true
+}
