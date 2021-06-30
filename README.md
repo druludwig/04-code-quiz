@@ -11,7 +11,6 @@ Open App: https://druludwig.github.io/04-code-quiz/
 - My psudocoding skills (my ability to see the HTML, CSS, and Javascript code as "one") greatly improved during the development process.
 - I had fun creating nonsense wrong answers during breaks to clear my mind.
 
-<br>
 
 ## Next Version Features
 The next iteration of this code quiz will include a number of improvements before it can become part of my final portfolio:
