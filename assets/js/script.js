@@ -10,8 +10,9 @@ let answerLine2 = document.querySelector("#answerLine2");
 let answerLine3 = document.querySelector("#answerLine3");
 let answerLine4 = document.querySelector("#answerLine4");
 let initialsField = document.querySelector("#initials");
-let leaderboardInitials = document.querySelector("#leaders")
-let leaderboardScores = document.querySelector("#scores")
+let leaderList = document.querySelector("#leader-list")
+let leaderBoard = document.querySelector("#leaderboard")
+let leaderboardButton = document.querySelector("#view-leaderboard")
 
 let currentIndex = 0;
 let time = 0;
@@ -21,44 +22,44 @@ let score = 0;
 
 let questionsArray=[
     {
-       question: "Q1: How much do I love javascript?",
-       answer1: "One",
-       answer2: "Two",
-       answer3: "Three",
-       answer4: "Four",
-       correctAnswer: "Three"
+       question: "What is a Boolean?",
+       answer1: "A CSS class that separates elements from styles",
+       answer2: "A Javascript variable that is either true or false",
+       answer3: "A function in PHP that reticulates splines",
+       answer4: "A new race of aliens in Star Trek",
+       correctAnswer: "A Javascript variable that is either true or false"
     },
     {
-       question: "Q2: How much do I love CSS?",
-       answer1: "Nope",
-       answer2: "Some",
-       answer3: "So much",
-       answer4: "I don't",
-       correctAnswer:"Some"
+       question: "What is Python?",
+       answer1: "A CSS library that allows for rapid development",
+       answer2: "A conglomerated SQL method for capturing API data",
+       answer3: "A programming language used to create web applications",
+       answer4: "Another reason not to go to Florida",
+       correctAnswer:"A programming language used to create web applications"
     },
     {
-      question: "Q3: Colors",
-      answer1: "Red",
-      answer2: "Green",
-      answer3: "Blue",
-      answer4: "Purple",
-      correctAnswer:"Blue"
+      question: "When will Internet Explorer retire?",
+      answer1: "July 30, 2021",
+      answer2: "Jan 1, 2022",
+      answer3: "June 15, 2022",
+      answer4: "Who?",
+      correctAnswer:"June 15, 2022"
    },
    {
-      question: "Q4: Animals",
-      answer1: "Cat",
-      answer2: "Dog",
-      answer3: "Lizard",
-      answer4: "Pork",
-      correctAnswer:"Lizard"
+      question: "What is ''Error trapping?''",
+      answer1: "The prediction, finding, and fixing of programming errors",
+      answer2: "Logging error messages in an encryped file",
+      answer3: "Coding error alerts to automatically hide",
+      answer4: "A new kind of music",
+      correctAnswer:"The prediction, finding, and fixing of programming errors"
    },
    {
-      question: "Q5: Trees",
-      answer1: "Pine",
-      answer2: "Alder",
-      answer3: "Maple",
-      answer4: "Cherry",
-      correctAnswer:"Pine"
+      question: "What is a Javascript operator?",
+      answer1: "An in-line command that triggers a function",
+      answer2: "A mathematical symbol that produces a result based on two values",
+      answer3: "A contatiner that can hold an instruction value",
+      answer4: "The people physically connecting the internet together",
+      correctAnswer:"A mathematical symbol that produces a result based on two values"
    }
 ]
 
@@ -67,7 +68,7 @@ startButton.addEventListener("click", startQuiz);
 
 function startQuiz(){
    currentIndex = 0
-   sectionText.textContent = '';
+   sectionText.textContent = 'Good Luck!';
    startButton.style.display = 'none';
    saveButton.style.display = 'none';
    answerDisplay.style.display = 'block';
@@ -138,11 +139,13 @@ function checkProgress(){
 //   This ends the quiz if they complete it in time
 function endQuiz(){
    isDone = true;
+   timerElement.textContent = '';
    sectionText.style.display = '';
    sectionHead.textContent = 'All Done!';
    sectionText.textContent = `You answered ${score} out of 5 correctly and had ${time} seconds left on the clock. Enter your initials to save your score:`;
-   initialsField.style.display = 'block';
+   initialsField.style.display = 'inline';
    saveButton.style.display = 'block';
+   saveButton.setAttribute('align-self', 'center')
    answerDisplay.style.display = 'none';
    saveButton.addEventListener("click", (postScores));
 }
@@ -153,6 +156,7 @@ function timerOut(){
    sectionText.textContent = `The timer ran out! You got through ${currentIndex} questions and got ${score} of them correct before time ran out.`;
    startButton.style.display = 'block';
    startButton.innerHTML = "Start Over"
+   answerDisplay.style.display = "none"
 }
 
 
@@ -173,23 +177,16 @@ function postScores(){
   }
   
 function displayHighscores(){
-   sectionHead.textContent = ""
-   sectionText.textContent = ""
+   quizMain.style.display = 'none'
+   leaderBoard.style.display = 'block';
     let savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
     for (i=0; i<savedScores.length; i++){
-        let initialsText = document.createElement("li");
-        let scoreText = document.createElement("li");
-        initialsText.textContent = savedScores[i].name;
-        scoreText.textContent = savedScores[i].score;
-        leaderboardInitials.appendChild(initialsText);
-        leaderboardScores.appendChild(scoreText);
+        let displayText = document.createElement("li");
+        displayText.textContent = `${savedScores[i].name} scored ${savedScores[i].score} / 5` ;
+        leaderList.appendChild(displayText);
     }
+    leaderboardButton.style.display = "none"
 }
 
 
-
-//save to local storage
-//send to high scores page
-
-
-
+leaderboardButton.addEventListener("click", (displayHighscores));

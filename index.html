@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Quiz</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
@@ -12,13 +12,14 @@
 </head>
 
 <body>
+    <button id="view-leaderboard">View Scoreboard</button>
     <div id="quiz-main" class="window">
         <p id="timer-display">Time: 60</p>
         <h1 id="section-head">Coding Quiz</h1>
         <p id="section-text">Using only 5 questions, you'll be able to determine if you have what it takes to scratch code entire websites from memory!</p>
         <input type="text" name="initials" id="initials" placeholder="Initials" class="hidden"/>
         <button id="start-button">Start</button>
-        <button id="save-button" class="hidden">Save Score</button>
+        <button id="save-button">Save Score</button>
         <ul id="answer-display" class="hidden">
             <li id="answerLine1" class="answer"></li>
             <li id="answerLine2" class="answer"></li>
@@ -28,10 +29,11 @@
     </div>
 
 
-    <!-- <div id="leaderboard">
-        <div id="leaders" class="leaderboard-50"></div>
-        <div id="scores" class="leaderboard-50"></div>
-    </div> -->
+    <div id="leaderboard" class="leaderboard">
+        <div id="leader-list" class="leader-list"></div>
+        <button onclick="window.location.href='index.html'">Start New Quiz</button>
+
+    </div>
 
 
 

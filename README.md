@@ -10,3 +10,7 @@ to do before portfolio final draft
 Tighten up timer - rushing through the app
 occasional jitter on timer when completing
 Add verification to initials
+
+psudocoding got better
+things clicked around hour 27
+had fun coming up with nonsense wrong answers

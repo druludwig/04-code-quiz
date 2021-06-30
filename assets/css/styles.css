@@ -1,14 +1,15 @@
 :root{
-    --primary-color: #e31b23;
+    --primary-color: #eb4d4b;
     --secondary-color: #383838;
-    --accent-color-1: #9fbb9e;
-    --accent-color-2: #c6c6fc;
+    --accent-color-1: #95afc0;
+    --accent-color-2: #c7ecee;
 
 }
 
 body{
     background-color: var(--accent-color-1);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
@@ -20,8 +21,10 @@ body{
     align-content: center;
     height: 40vh;
     width: 60vh;
-    background-color: antiquewhite;
+    background-color: var(--accent-color-2);
     text-align: center;
+    box-shadow: 10px 10px 5px #a8a8a8;
+    border-radius: 10px;
 }
 
 .hidden{
@@ -30,20 +33,36 @@ body{
 /* Quiz */
 
 .answer{
+    flex-grow: 1;
     margin: 5px 15px 5px 15px;
     border: 1px solid var(--secondary-color);
     cursor:pointer;
-    background-color: var(--accent-color-2);
+    background-color: #fff;
+    color: var(--secondary-color);
     ;
 }
 
 
-
-
-
 /* Leaderboard */
-.leaderboard-50{
-    width: 50%;
+.leaderboard{
+    display: flex;
+
+    height: 40vh;
+    width: 60vh;
+    background-color: var(--accent-color-2);
+    text-align: center;
+    box-shadow: 10px 10px 5px #a8a8a8;
+    border-radius: 10px;
+    display:none;
+
+}
+.leader-list{
+margin-top: 20px}
+
+.leader-list li{
+    color: var(--secondary-color);
+    list-style-type: none;
+
 }
 
 
@@ -62,6 +81,14 @@ body{
     align-self: center;
 }
 
+#save-button{
+    margin: 20px;
+    width: 20%;
+    display: none;
+    align-self: center;
+
+}
+
 #section-text{
     margin: 10px;
     font-size: 1em;
@@ -77,6 +104,14 @@ body{
     padding: 0px;
 }
 
+#initials{
+    width: 25%;
+    align-self: center;
+}
 
+#view-leaderboard{
+    margin-bottom: 15px;
+    opacity: 75%;
+}
 
 
