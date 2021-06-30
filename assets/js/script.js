@@ -10,6 +10,8 @@ let answerLine2 = document.querySelector("#answerLine2");
 let answerLine3 = document.querySelector("#answerLine3");
 let answerLine4 = document.querySelector("#answerLine4");
 let initialsField = document.querySelector("#initials");
+let leaderboardInitials = document.querySelector("#leaders")
+let leaderboardScores = document.querySelector("#scores")
 
 let currentIndex = 0;
 let time = 0;
@@ -75,7 +77,7 @@ function startQuiz(){
 
 //Start the Timer
 function gameTimer() {
-      time = 51
+      time = 61
       timer = setInterval(function() {
         time--;
         timerElement.textContent = ("Time: " + time);
@@ -133,7 +135,7 @@ function checkProgress(){
 
 
  
-//This ends the quiz if they complete it in time
+//   This ends the quiz if they complete it in time
 function endQuiz(){
    isDone = true;
    sectionText.style.display = '';
@@ -156,6 +158,8 @@ function timerOut(){
 
 
 function postScores(){
+   saveButton.style.display = 'none';
+   initialsField.style.display = 'none';
    let savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
    let player = initialsField.value;
    let currentScore = {
@@ -168,7 +172,19 @@ function postScores(){
    displayHighscores();
   }
   
-
+function displayHighscores(){
+   sectionHead.textContent = ""
+   sectionText.textContent = ""
+    let savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+    for (i=0; i<savedScores.length; i++){
+        let initialsText = document.createElement("li");
+        let scoreText = document.createElement("li");
+        initialsText.textContent = savedScores[i].name;
+        scoreText.textContent = savedScores[i].score;
+        leaderboardInitials.appendChild(initialsText);
+        leaderboardScores.appendChild(scoreText);
+    }
+}
 
 
 

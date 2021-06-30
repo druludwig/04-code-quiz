@@ -1,7 +1,82 @@
-.root{
+:root{
+    --primary-color: #e31b23;
+    --secondary-color: #383838;
+    --accent-color-1: #9fbb9e;
+    --accent-color-2: #c6c6fc;
 
+}
+
+body{
+    background-color: var(--accent-color-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.window{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 40vh;
+    width: 60vh;
+    background-color: antiquewhite;
+    text-align: center;
 }
 
 .hidden{
     display: none;
 }
+/* Quiz */
+
+.answer{
+    margin: 5px 15px 5px 15px;
+    border: 1px solid var(--secondary-color);
+    cursor:pointer;
+    background-color: var(--accent-color-2);
+    ;
+}
+
+
+
+
+
+/* Leaderboard */
+.leaderboard-50{
+    width: 50%;
+}
+
+
+
+
+
+
+/* ID Specific Elements */
+#timer-display{
+    text-align: center;
+}
+
+#start-button{
+    margin: 20px;
+    width: 20%;
+    align-self: center;
+}
+
+#section-text{
+    margin: 10px;
+    font-size: 1em;
+}
+
+#section-head{
+    margin: 10px;
+    font-size: 2em;
+}
+
+#answer-display{
+    list-style-type: none;
+    padding: 0px;
+}
+
+
+
+

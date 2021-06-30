@@ -5,25 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div id="quiz-main">
-        <p id="timer-display"></p>
-        <p id="score-display"></p>
-        <h1 id="section-head">Intro Headline</h1><!-- use css to hide at first -->
-        <p id="section-text">Paragraph</p>
+    <div id="quiz-main" class="window">
+        <p id="timer-display">Time: 60</p>
+        <h1 id="section-head">Coding Quiz</h1>
+        <p id="section-text">Using only 5 questions, you'll be able to determine if you have what it takes to scratch code entire websites from memory!</p>
         <input type="text" name="initials" id="initials" placeholder="Initials" class="hidden"/>
         <button id="start-button">Start</button>
         <button id="save-button" class="hidden">Save Score</button>
         <ul id="answer-display" class="hidden">
-            <li id="answerLine1"></li>
-            <li id="answerLine2"></li>
-            <li id="answerLine3"></li>
-            <li id="answerLine4"></li>
+            <li id="answerLine1" class="answer"></li>
+            <li id="answerLine2" class="answer"></li>
+            <li id="answerLine3" class="answer"></li>
+            <li id="answerLine4" class="answer"></li>
         </ul>
     </div>
+
+
+    <!-- <div id="leaderboard">
+        <div id="leaders" class="leaderboard-50"></div>
+        <div id="scores" class="leaderboard-50"></div>
+    </div> -->
+
+
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
