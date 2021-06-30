@@ -2,7 +2,6 @@ let quizMain = document.querySelector("#quiz-main")
 let startButton = document.querySelector("#start-button");
 let saveButton = document.querySelector("#save-button");
 let timerElement = document.querySelector("#timer-display");
-let scoreElement = document.querySelector("#score-display");
 let sectionHead = document.querySelector("#section-head");
 let sectionText = document.querySelector("#section-text");
 let answerDisplay = document.querySelector("#answer-display");
@@ -10,6 +9,7 @@ let answerLine1 = document.querySelector("#answerLine1");
 let answerLine2 = document.querySelector("#answerLine2");
 let answerLine3 = document.querySelector("#answerLine3");
 let answerLine4 = document.querySelector("#answerLine4");
+let initialsField = document.querySelector("#initials");
 
 let currentIndex = 0;
 let time = 0;
@@ -109,7 +109,7 @@ for (let i = 0; i < questionsArray.length; i++) {
 
 //Check for correct answer
 function checkAnswers(event){
-   var element = event.target;
+   let element = event.target;
    if (element.matches("li")) {
       if (element.textContent == questionsArray[currentIndex].correctAnswer){
       score++;
@@ -135,27 +135,45 @@ function checkProgress(){
  
 //This ends the quiz if they complete it in time
 function endQuiz(){
-isDone = true;
-sectionText.style.display = '';
-sectionHead.textContent = 'All Done!';
-sectionText.textContent = `You answered ${score} out of 5 correctly and had ${time} seconds left on the clock`;
-saveButton.style.display = 'block';
-saveButton.addEventListener("click", (postScores));
+   isDone = true;
+   sectionText.style.display = '';
+   sectionHead.textContent = 'All Done!';
+   sectionText.textContent = `You answered ${score} out of 5 correctly and had ${time} seconds left on the clock. Enter your initials to save your score:`;
+   initialsField.style.display = 'block';
+   saveButton.style.display = 'block';
+   answerDisplay.style.display = 'none';
+   saveButton.addEventListener("click", (postScores));
 }
 
 //This ends the quiz if the timer runs out
 function timerOut(){
-sectionHead.textContent = "Oh no!"
-sectionText.textContent = `The timer ran out! You got through ${currentIndex} questions and got ${score} of them correct before time ran out.`;
-startButton.style.display = 'block';
-startButton.innerHTML = "Start Over"
+   sectionHead.textContent = "Oh no!"
+   sectionText.textContent = `The timer ran out! You got through ${currentIndex} questions and got ${score} of them correct before time ran out.`;
+   startButton.style.display = 'block';
+   startButton.innerHTML = "Start Over"
 }
+
+
 
 function postScores(){
-sectionHead.textContent = "Save your Score";
-sectionText.textContent = "Enter your First name";
-answerDisplay.style.display = 'none';
-saveButton.style.display = 'none';
+   let savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+   let player = initialsField.value;
+   let currentScore = {
+         name : player,
+         score : score
+   };
+   savedScores.push(currentScore);
+   localStorage.setItem("savedScores", JSON.stringify(savedScores));
+
+   displayHighscores();
+  }
+  
 
 
-}
+
+
+//save to local storage
+//send to high scores page
+
+
+
