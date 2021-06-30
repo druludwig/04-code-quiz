@@ -18,6 +18,7 @@ The next iteration of this code quiz will include a number of improvements befor
 - Adjust the timer which occasionally jitters at quiz end.
 - Add validation to check initials input.
 - Add user friendly percent scores (e.g. 2/5 becomes 40%)
+- Add mobile UI features.
 
 <br>
 
