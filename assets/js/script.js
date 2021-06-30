@@ -31,14 +31,39 @@ let questionsArray=[
        answer3: "So much",
        answer4: "I don't",
        correctAnswer:"Some"
-    }
+    },
+    {
+      question: "Q3: Colors",
+      answer1: "Red",
+      answer2: "Green",
+      answer3: "Blue",
+      answer4: "Purple",
+      correctAnswer:"Blue"
+   },
+   {
+      question: "Q4: Animals",
+      answer1: "Cat",
+      answer2: "Dog",
+      answer3: "Lizard",
+      answer4: "Pork",
+      correctAnswer:"Lizard"
+   },
+   {
+      question: "Q5: Trees",
+      answer1: "Pine",
+      answer2: "Alder",
+      answer3: "Maple",
+      answer4: "Cherry",
+      correctAnswer:"Pine"
+   }
 ]
 
 //01 Start the Game
 startButton.addEventListener("click", startQuiz);
 
 function startQuiz(){
-   time = 0;
+   sectionText.style.display = 'none';
+   startButton.style.display = 'none';
    gameTimer();
    renderQuestions();
 //hide start button
@@ -68,7 +93,7 @@ function gameTimer() {
       }, 1000);
 }
 
-//Generate and display the questions and answers
+//03 Generate and display the questions and answers
 function renderQuestions(){  
 for (let i = 0; i < questionsArray.length; i++) {
 
@@ -85,7 +110,6 @@ for (let i = 0; i < questionsArray.length; i++) {
    
 }
 } 
-// endQuiz()
 
 //Check for correct answer
 function checkAnswers(event){
@@ -105,7 +129,8 @@ function checkAnswers(event){
    checkProgress()
    }
 
-   function checkProgress(){
+//Check to see if the quiz should continue or not
+function checkProgress(){
    if (currentIndex < questionsArray.length){
          renderQuestions()
       } else {
@@ -114,10 +139,13 @@ function checkAnswers(event){
    }
 
 
-
-   
  
+//This ends the quiz if they complete it in time
+function endQuiz(){
+sectionHead.textContent = "All Done!"
+sectionText.textContent = `You answered ${score} out of 5 correctly`
 
+}
 
 
 
@@ -127,9 +155,6 @@ function timerOut(){
 sectionHead.textContent = "You lose."
 }
 
-//This ends the quiz if they complete it in time
-function endQuiz(){
-sectionHead.textContent = "The game ended because you finished."
-}
+
 
 //isDone -- if the quiz is done then set isdone to true
